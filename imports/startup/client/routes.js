@@ -11,6 +11,7 @@ import '../../ui/pages/app-not-found.js';
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
 
+/*
 FlowRouter.route('/lists/:_id', {
   name: 'Lists.show',
   action() {
@@ -48,3 +49,4 @@ AccountsTemplates.configureRoute('resetPwd', {
   name: 'resetPwd',
   path: '/reset-password',
 });
+*/
