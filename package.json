@@ -9,8 +9,21 @@
     "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests"
   },
   "dependencies": {
-    "autoprefixer": "^6.3.1",
-    "faker": "^3.0.1"
+    "@angular/common": "2.1.1",
+    "@angular/compiler": "2.1.1",
+    "@angular/core": "2.1.1",
+    "@angular/forms": "2.1.1",
+    "@angular/platform-browser": "2.1.1",
+    "@angular/platform-browser-dynamic": "2.1.1",
+    "@angular/router": "3.1.1",
+    "angular2-meteor": "0.7.0",
+    "meteor-node-stubs": "0.2.3",
+    "meteor-rxjs": "0.4.0",
+    "reflect-metadata": "0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "0.6.26",
+    "autoprefixer": "6.3.1",
+    "faker": "3.0.1"
   },
   "devDependencies": {
     "eslint": "^2.3.0",
