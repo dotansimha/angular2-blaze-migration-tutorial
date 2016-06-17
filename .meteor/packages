@@ -14,7 +14,6 @@ tracker
 # standard libraries
 jquery
 underscore
-less
 
 # ui
 blaze-html-templates
