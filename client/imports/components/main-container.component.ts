@@ -1,8 +1,11 @@
 import {Component} from "@angular/core";
+import {MeteorComponent} from "angular2-meteor";
 
 @Component({
-  template: 'Hello MainContainer!'
+  directives: [],
+  template: ''
 })
-export class MainContainerComponent {
-
+export class MainContainerComponent extends MeteorComponent {
+  constructor() {
+  }
 }
