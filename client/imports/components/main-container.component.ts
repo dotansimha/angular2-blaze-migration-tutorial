@@ -9,8 +9,15 @@ import {Router} from "@angular/router-deprecated";
 })
 export class MainContainerComponent extends MeteorComponent {
   constructor(router : Router) {
-    if (Lists.findOne()) {
-      router.navigate(['ListShow', {_id: Lists.findOne()._id}]);
-    }
+    super();
+
+    this.subscribe('lists.public');
+    this.subscribe('lists.private');
+
+    this.autorun(() => {
+      if (Lists.findOne()) {
+        router.navigate(['ListShow', {_id: Lists.findOne()._id}]);
+      }
+    });
   }
 }
