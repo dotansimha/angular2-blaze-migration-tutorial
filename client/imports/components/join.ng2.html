@@ -6,19 +6,31 @@
             </a>
         </div>
     </nav>
-
     <div class="content-scrollable">
         <div class="wrapper-auth">
             <div class="at-form">
                 <h1 class="title-auth">Join</h1>
                 <p class="subtitle-auth">Signing in allows you to have private lists</p>
+                <div class="list-errors">
+                    <div *ngFor="let errorText of errors" class="list-item">{{errorText}}</div>
+                </div>
                 <div class="at-pwd-form">
-                    <form role="form" id="at-pwd-form">
-
+                    <form id="at-pwd-form" (ngSubmit)="join()" #joinForm="ngForm">
+                        <div class="input">
+                            <input [(ngModel)]="model.email" ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="Email" class="form-control" autocapitalize="none" autocorrect="off">
+                        </div>
+                        <div class="input">
+                            <input [(ngModel)]="model.password" ngControl="password" #password="ngForm" required type="password" id="password" name="password" class="form-control" placeholder="Password" autocapitalize="none" autocorrect="off">
+                        </div>
+                        <div class="input">
+                            <input [(ngModel)]="model.passwordVerify" ngControl="passwordVerify" #passwordVerify="ngForm" required type="password" id="password_verify" class="form-control" name="password_verify" placeholder="Password (Again)" autocapitalize="none" autocorrect="off">
+                        </div>
+                        <button type="submit" class="btn-primary" [disabled]="!joinForm.form.valid">
+                            REGISTER
+                        </button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
