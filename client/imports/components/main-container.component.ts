@@ -5,18 +5,20 @@ import {Router, ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {ListShowComponent} from "./list-show.component";
+import {ListRedirectorComponent} from "./list-redirector.component";
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
   templateUrl: '/client/imports/components/main-container.ng2.html'
 })
 @RouteConfig([
-  {path: 'lists/:_id', name: 'ListShow', component: ListShowComponent }
+  {path: 'lists/:_id', name: 'ListShow', component: ListShowComponent },
+  {path: '', name: 'ListRedirector', component: ListRedirectorComponent, useAsDefault: true}
 ])
 export class MainContainerComponent extends MeteorComponent {
   private lists : Mongo.Cursor;
 
-  constructor() {
+  constructor(private router : Router) {
     super();
 
     this.subscribe('lists.public');
