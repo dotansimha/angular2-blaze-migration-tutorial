@@ -12,8 +12,7 @@ import {ListShowComponent} from "./imports/components/list-show.component";
   template: `<router-outlet></router-outlet>`,
 })
 @RouteConfig([
-  {path: '/', name: 'Home', component: MainContainerComponent },
-  {path: '/lists/:_id', name: 'ListShow', component: ListShowComponent }
+  {path: '/...', name: 'Home', component: MainContainerComponent }
 ])
 class MainComponent {
   constructor() {}
