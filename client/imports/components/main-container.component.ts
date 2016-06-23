@@ -17,12 +17,17 @@ import {ListRedirectorComponent} from "./list-redirector.component";
 ])
 export class MainContainerComponent extends MeteorComponent {
   private lists : Mongo.Cursor;
+  private isCordova : boolean;
+  private menuOpen : boolean = false;
+  private userMenuOpen : boolean = false;
 
   constructor(private router : Router) {
     super();
 
     this.subscribe('lists.public');
     this.subscribe('lists.private');
+
+    this.isCordova = Meteor.isCordova;
 
     this.autorun(() => {
       this.lists = Lists.find({ $or: [
@@ -36,8 +41,12 @@ export class MainContainerComponent extends MeteorComponent {
     return Meteor.status().connected;
   }
 
-  isCurrentList() {
+  isCurrentList(list) {
+    if (this.router.currentInstruction) {
+      let currentRouteParams = this.router.currentInstruction.component.params;
 
+      return currentRouteParams._id === list._id;
+    }
   }
 
   emailLocalPart() {
