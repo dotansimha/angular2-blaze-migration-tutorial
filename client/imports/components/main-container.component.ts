@@ -26,6 +26,7 @@ export class MainContainerComponent extends MeteorComponent {
   private isCordova : boolean;
   private menuOpen : boolean = false;
   private userMenuOpen : boolean = false;
+  private currentUser : Meteor.User;
 
   constructor(private router : Router) {
     super();
@@ -40,6 +41,8 @@ export class MainContainerComponent extends MeteorComponent {
         { userId: { $exists: false } },
         { userId: Meteor.userId() },
       ] });
+
+      this.currentUser = Meteor.user();
     }, true);
   }
 
