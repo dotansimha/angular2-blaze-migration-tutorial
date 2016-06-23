@@ -1,14 +1,18 @@
 import {Component} from "@angular/core";
 import {MeteorComponent} from "angular2-meteor";
 import {Lists} from "../../../imports/api/lists/lists.js";
-import {Router, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
+import {Router, ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
+import {ListShowComponent} from "./list-show.component";
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
   templateUrl: '/client/imports/components/main-container.ng2.html'
 })
+@RouteConfig([
+  {path: 'lists/:_id', name: 'ListShow', component: ListShowComponent }
+])
 export class MainContainerComponent extends MeteorComponent {
   private lists : Mongo.Cursor;
 
