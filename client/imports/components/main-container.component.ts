@@ -3,6 +3,7 @@ import {MeteorComponent} from "angular2-meteor";
 import {Lists} from "../../../imports/api/lists/lists.js";
 import {Router, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {Mongo} from "meteor/mongo";
+import {Meteor} from "meteor/meteor";
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -26,7 +27,7 @@ export class MainContainerComponent extends MeteorComponent {
   }
 
   isConnected() {
-
+    return Meteor.status().connected;
   }
 
   isCurrentList() {
