@@ -6,6 +6,8 @@ import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {ListShowComponent} from "./list-show.component";
 import {ListRedirectorComponent} from "./list-redirector.component";
+import {JoinComponent} from "./join.component";
+import {SigninComponent} from "./signin.component";
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -13,7 +15,9 @@ import {ListRedirectorComponent} from "./list-redirector.component";
 })
 @RouteConfig([
   {path: 'lists/:_id', name: 'ListShow', component: ListShowComponent },
-  {path: '', name: 'ListRedirector', component: ListRedirectorComponent, useAsDefault: true}
+  {path: '', name: 'ListRedirector', component: ListRedirectorComponent, useAsDefault: true},
+  {path: 'join', name: 'Join', component: JoinComponent},
+  {path: 'signin', name: 'Signin', component: SigninComponent}
 ])
 export class MainContainerComponent extends MeteorComponent {
   private lists : Mongo.Cursor;
