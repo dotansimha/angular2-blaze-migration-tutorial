@@ -7,7 +7,7 @@
 
                 {{emailLocalPart()}}
             </a>
-            <a *ngIf="userMenuOpen" class="js-logout btn-secondary">Logout</a>
+            <a *ngIf="userMenuOpen" class="js-logout btn-secondary" (click)="logout()">Logout</a>
         </div>
         <div *ngIf="!currentUser" class="btns-group">
             <a [routerLink]="['Signin']" class="btn-secondary">Sign In</a>
