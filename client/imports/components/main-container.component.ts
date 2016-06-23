@@ -76,4 +76,20 @@ export class MainContainerComponent extends MeteorComponent {
 
     this.router.navigate(['ListShow', {_id: listId}]);
   }
+
+  logout() {
+    Meteor.logout();
+
+    if (this.router.currentInstruction) {
+      let currentRouteParams = this.router.currentInstruction.component.params;
+
+      if (currentRouteParams._id) {
+        const list = Lists.findOne(currentRouteParams._id);
+
+        if (list.userId) {
+          this.router.navigate(['ListShow', {_id: Lists.findOne({ userId: { $exists: false } })._id}]);
+        }
+      }
+    }
+  }
 }
