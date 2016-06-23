@@ -1,0 +1,65 @@
+<div class="page lists-show">
+    <nav class="js-title-nav" *ngIf="list">
+        <form *ngIf="editing" class="js-edit-form list-edit-form">
+            <input type="text" name="name" [value]="editModel.name">
+            <div class="nav-group right">
+                <a href="#" class="js-cancel nav-item">
+                    <span class="icon-close js-cancel" title="Cancel"></span>
+                </a>
+            </div>
+        </form>
+        <div *ngIf="!editing">
+            <div class="nav-group">
+                <a href="#" class="js-menu nav-item">
+                    <span class="icon-list-unordered" title="Show Menu"></span>
+                </a>
+            </div>
+
+            <h1 class="js-edit-list title-page">
+                <span class="title-wrapper">{{list.name}}</span>
+                <span class="count-list">{{list.incompleteCount}}</span>
+            </h1>
+
+            <div class="nav-group right">
+                <div class="nav-item options-mobile">
+                    <select class="list-edit">
+                        <option disabled selected>Select an action</option>
+                        <option *ngIf="list.userId" value="public">Make Public</option>
+                        <option *ngIf="!list.userId" value="private">Make Private</option>
+                        <option value="delete">Delete</option>
+                    </select>
+                    <span class="icon-cog"></span>
+                </div>
+                <div class="options-web">
+                    <a class="js-toggle-list-privacy nav-item">
+                        <span *ngIf="list.userId" class="icon-lock" title="Make list public"></span>
+                        <span *ngIf="!list.userId" class="icon-unlock" title="Make list private"></span>
+                    </a>
+                    <a class="js-delete-list nav-item">
+                        <span class="icon-trash" title="Delete list"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <form class="js-todo-new todo-new input-symbol">
+            <input type="text" placeholder="Type to add new tasks">
+            <span class="icon-add js-todo-add"></span>
+        </form>
+    </nav>
+
+    <div class="content-scrollable list-items">
+        <div *ngIf="todosReady">
+            <div *ngFor="let todo of todos">
+                <blaze-template name="Todos_item" [context]="getContextForItem(todo)"></blaze-template>
+            </div>
+            <div class="wrapper-message" *ngIf="!todos || todos.length == 0">
+                <div class="title-message">No tasks here</div>
+                <div class="subtitle-message">Add new tasks using the field above</div>
+            </div>
+        </div>
+        <div *ngIf="!todosReady" class="wrapper-message">
+            <div class="title-message">Loading tasks...</div>
+        </div>
+    </div>
+</div>
