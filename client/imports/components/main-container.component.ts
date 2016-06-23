@@ -35,6 +35,13 @@ export class MainContainerComponent extends MeteorComponent {
   }
 
   emailLocalPart() {
+    if (Meteor.user()) {
+      const email = Meteor.user().emails[0].address;
 
+      return email.substring(0, email.indexOf('@'));
+    }
+    else {
+      return "";
+    }
   }
 }
