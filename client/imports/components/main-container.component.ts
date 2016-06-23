@@ -8,6 +8,8 @@ import {ListShowComponent} from "./list-show.component";
 import {ListRedirectorComponent} from "./list-redirector.component";
 import {JoinComponent} from "./join.component";
 import {SigninComponent} from "./signin.component";
+import { insert } from '../../../imports/api/lists/methods.js';
+
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -62,5 +64,16 @@ export class MainContainerComponent extends MeteorComponent {
     else {
       return "";
     }
+  }
+
+  addNewList() {
+    const listId = insert.call((err) => {
+      if (err) {
+        this.router.navigate(['Home']);
+        alert('Could not create list.');
+      }
+    });
+
+    this.router.navigate(['ListShow', {_id: listId}]);
   }
 }
