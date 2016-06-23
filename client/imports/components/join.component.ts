@@ -3,7 +3,7 @@ import {MeteorComponent} from "angular2-meteor/build/index";
 
 @Component({
   directives: [],
-  template: 'Join!'
+  templateUrl: '/client/imports/components/join.ng2.html'
 })
 export class JoinComponent extends MeteorComponent {
   constructor() {
