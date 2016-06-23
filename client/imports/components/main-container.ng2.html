@@ -10,8 +10,8 @@
             <a *ngIf="userMenuOpen" class="js-logout btn-secondary">Logout</a>
         </div>
         <div *ngIf="!currentUser" class="btns-group">
-            <a href="SIGNIN_LINK" class="btn-secondary">Sign In</a>
-            <a href="JOIN_LINK" class="btn-secondary">Join</a>
+            <a [routerLink]="['Signin']" class="btn-secondary">Sign In</a>
+            <a [routerLink]="['Join']" class="btn-secondary">Join</a>
         </div>
 
         <div class="list-todos">
@@ -20,7 +20,7 @@
                 New List
             </a>
 
-            <a *ngFor="let list of lists" href="LIST_LINK" [title]="list.name"
+            <a *ngFor="let list of lists" [routerLink]="['ListShow', {_id: list._id}]" [title]="list.name"
                class="list-todo" [ngClass]="{'active': isCurrentList(list)}">
                 <span *ngIf="list.userId" class="icon-lock"></span>
                 <span *ngIf="list.incompleteCount" class="count-list">{{list.incompleteCount}}</span>
