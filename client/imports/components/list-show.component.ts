@@ -4,7 +4,7 @@ import {BlazeTemplate} from "angular2-blaze-template";
 
 @Component({
   directives: [BlazeTemplate],
-  template: `<blaze-template name="App_body" [context]="templateContext"></blaze-template>`
+  template: `<blaze-template name="Lists_show_page" [context]="templateContext"></blaze-template>`
 })
 export class ListShowComponent {
   private templateContext : any;
@@ -13,7 +13,6 @@ export class ListShowComponent {
     let listId = params.get("_id");
 
     this.templateContext = {
-      main: "Lists_show_page",
       _id: listId
     };
   }
