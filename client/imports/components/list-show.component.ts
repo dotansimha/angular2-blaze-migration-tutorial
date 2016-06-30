@@ -1,8 +1,20 @@
 import {Component} from "@angular/core";
-import {RouteParams} from "@angular/router-deprecated";
+import {RouteParams, Router} from "@angular/router-deprecated";
 import {BlazeTemplate} from "angular2-blaze-template";
 import {Lists} from "../../../imports/api/lists/lists.js"
 import {MeteorComponent} from "angular2-meteor";
+import {
+  updateName,
+  makePublic,
+  makePrivate,
+  remove,
+} from '../../../imports/api/lists/methods.js';
+
+import {
+  insert,
+} from '../../../imports/api/todos/methods.js';
+
+import { displayError } from '../../../imports/ui/lib/errors.js';
 
 @Component({
   directives: [BlazeTemplate],
@@ -13,8 +25,10 @@ export class ListShowComponent extends MeteorComponent {
   private todosReady : boolean = false;
   private todos : Array<any>;
   private editing : boolean = false;
+  private editModel : any;
+  private newItemModel : string = '';
 
-  constructor(params : RouteParams) {
+  constructor(params : RouteParams, private router : Router) {
     super();
 
     let listId = params.get("_id");
@@ -27,6 +41,66 @@ export class ListShowComponent extends MeteorComponent {
         this.todos = this.list.todos();
       }
     }, true);
+
+    this.editModel = {
+      name: ''
+    }
+  }
+
+  deleteList() {
+    const list = this.list;
+    const message = `Are you sure you want to delete the list?`;
+
+    if (confirm(message)) {
+      remove.call({
+        listId: list._id,
+      }, displayError);
+
+      this.router.root.navigate(['Home']);
+
+      return true;
+    }
+
+    return false;
+  }
+
+  editList(toggle) {
+    this.editModel.name = this.list.name;
+    this.editing = toggle;
+  }
+
+  toggleListPrivacy() {
+    const list = this.list;
+
+    if (list.userId) {
+      makePublic.call({ listId: list._id }, displayError);
+    } else {
+      makePrivate.call({ listId: list._id }, displayError);
+    }
+  }
+
+  addNew() {
+    if (this.newItemModel == '') {
+      return;
+    }
+
+    insert.call({
+      listId: this.list._id,
+      text: this.newItemModel,
+    }, displayError);
+
+    this.newItemModel = '';
+  }
+
+  saveList() {
+    if (this.editing) {
+      updateName.call({
+        listId: this.list._id,
+        newName: this.editModel.name,
+      }, displayError);
+
+      this.editing = false;
+    }
   }
 
   getContextForItem(todo) {
