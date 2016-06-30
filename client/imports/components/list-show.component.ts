@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {RouteParams, Router} from "@angular/router-deprecated";
-import {BlazeTemplate} from "angular2-blaze-template";
 import {Lists} from "../../../imports/api/lists/lists.js"
 import {MeteorComponent} from "angular2-meteor";
 import {
@@ -15,9 +14,10 @@ import {
 } from '../../../imports/api/todos/methods.js';
 
 import { displayError } from '../../../imports/ui/lib/errors.js';
+import {ListItem} from "./list-item.component";
 
 @Component({
-  directives: [BlazeTemplate],
+  directives: [ListItem],
   templateUrl: '/client/imports/components/list-show.ng2.html'
 })
 export class ListShowComponent extends MeteorComponent {
@@ -27,6 +27,7 @@ export class ListShowComponent extends MeteorComponent {
   private editing : boolean = false;
   private editModel : any;
   private newItemModel : string = '';
+  private editingTodo : number | boolean;
 
   constructor(params : RouteParams, private router : Router) {
     super();
@@ -44,6 +45,15 @@ export class ListShowComponent extends MeteorComponent {
 
     this.editModel = {
       name: ''
+    }
+  }
+
+  onTodoItemEditChange(event) {
+    if (event.editing) {
+      this.editingTodo = event.todoId;
+    }
+    else {
+      this.editingTodo = false;
     }
   }
 
