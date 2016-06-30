@@ -58,4 +58,5 @@ practicalmeteor:mocha@2.1.1-rc.1
 hwillson:stub-collections
 johanbrook:publication-collector
 angular2-compilers
+less
 barbatus:angular2-runtime

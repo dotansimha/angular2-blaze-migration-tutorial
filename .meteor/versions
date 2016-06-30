@@ -6,9 +6,8 @@ aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
-angular2-css@0.1.0
+angular2-compilers@0.5.7
 angular2-html-templates@0.5.3
-angular2-with-blaze-compilers@0.5.7
 app-prod-security@0.0.0
 autoupdate@1.2.10
 babel-compiler@6.8.0
@@ -64,6 +63,7 @@ johanbrook:publication-collector@1.0.0
 jquery@1.11.9
 juliancwirko:postcss@1.1.1
 launch-screen@1.0.12
+less@2.6.1
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.13
