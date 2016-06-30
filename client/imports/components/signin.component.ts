@@ -10,7 +10,7 @@ class SigninModel {
 
 @Component({
   directives: [],
-  templateUrl: '/client/imports/components/signin.ng2.html'
+  templateUrl: '/client/imports/components/signin.html'
 })
 export class SigninComponent extends MeteorComponent {
   private model : SigninModel;

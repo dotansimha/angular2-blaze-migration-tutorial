@@ -11,7 +11,7 @@ class JoinModel {
 
 @Component({
   directives: [],
-  templateUrl: '/client/imports/components/join.ng2.html'
+  templateUrl: '/client/imports/components/join.html'
 })
 export class JoinComponent extends MeteorComponent {
   private model : JoinModel;

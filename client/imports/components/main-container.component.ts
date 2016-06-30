@@ -13,7 +13,7 @@ import { insert } from '../../../imports/api/lists/methods.js';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
-  templateUrl: '/client/imports/components/main-container.ng2.html'
+  templateUrl: '/client/imports/components/main-container.html'
 })
 @RouteConfig([
   {path: 'lists/:_id', name: 'ListShow', component: ListShowComponent },

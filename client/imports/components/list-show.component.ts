@@ -18,7 +18,7 @@ import {ListItem} from "./list-item.component";
 
 @Component({
   directives: [ListItem],
-  templateUrl: '/client/imports/components/list-show.ng2.html'
+  templateUrl: '/client/imports/components/list-show.html'
 })
 export class ListShowComponent extends MeteorComponent {
   private list : any;

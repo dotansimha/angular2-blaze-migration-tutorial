@@ -10,7 +10,7 @@ import {displayError} from '../../../imports/errors.js';
 
 @Component({
   selector: 'list-item',
-  templateUrl: '/client/imports/components/list-item.ng2.html'
+  templateUrl: '/client/imports/components/list-item.html'
 })
 export class ListItem {
   @Input() todo:any;
