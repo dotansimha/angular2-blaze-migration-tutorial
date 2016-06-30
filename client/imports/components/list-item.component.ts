@@ -6,7 +6,7 @@ import {
   remove,
 } from '../../../imports/api/todos/methods.js';
 
-import {displayError} from '../../../imports/ui/lib/errors.js';
+import {displayError} from '../../../imports/errors.js';
 
 @Component({
   selector: 'list-item',
