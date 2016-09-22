@@ -60,4 +60,9 @@ export class MainComponent implements OnInit {
 
     this.router.navigate(['/lists', listId]);
   }
+
+  logout() {
+    Meteor.logout();
+    this.router.navigate(['/']);
+  }
 }
