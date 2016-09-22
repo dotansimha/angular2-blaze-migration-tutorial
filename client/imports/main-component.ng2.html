@@ -7,7 +7,7 @@
 
                 {{ userEmail }}
             </a>
-            <a *ngIf="userMenuOpen" class="js-logout btn-secondary">Logout</a>
+            <a *ngIf="userMenuOpen" class="js-logout btn-secondary" (click)="logout()">Logout</a>
         </div>
         <div *ngIf="!currentUser" class="btns-group">
             <a routerLink="/signin" class="btn-secondary">Sign In</a>
