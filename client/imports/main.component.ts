@@ -38,6 +38,13 @@ export class MainComponent implements OnInit {
   }
 
   get userEmail() {
-    return "";
+    if (Meteor.user()) {
+      const email = Meteor.user().emails[0].address;
+
+      return email.substring(0, email.indexOf('@'));
+    }
+    else {
+      return "";
+    }
   }
 }
