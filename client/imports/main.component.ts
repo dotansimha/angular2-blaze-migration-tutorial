@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
   private menuOpen : boolean = false;
   private userMenuOpen : boolean = false;
   private lists: Observable<any>;
+  private currentUser : Meteor.User;
 
   constructor(private router: Router) {
     this.isCordova = Meteor.isCordova;
@@ -32,6 +33,8 @@ export class MainComponent implements OnInit {
           {userId: Meteor.userId()},
         ]
       }).zone();
+
+      this.currentUser = Meteor.user();
     });
   }
 
