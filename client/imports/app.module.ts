@@ -5,13 +5,17 @@ import {routing} from "./app.routes";
 import {ListShowComponent} from "./components/list-show.component";
 import {ListRedirectorComponent} from "./components/list-redirector.component";
 import {Angular2BlazeTemplateModule} from "angular2-blaze-template";
+import {JoinComponent} from "./components/join.component";
+import {SigninComponent} from "./components/signin.component";
 
 @NgModule({
     // Components, Pipes, Directive
     declarations: [
         MainComponent,
         ListShowComponent,
-        ListRedirectorComponent
+        ListRedirectorComponent,
+        JoinComponent,
+        SigninComponent
     ],
     // Entry Components
     entryComponents: [
