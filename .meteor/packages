@@ -42,9 +42,6 @@ tap:i18n
 
 # accounts
 accounts-password
-useraccounts:unstyled
-useraccounts:flow-routing
-softwarerero:accounts-t9n
 
 # mobile
 crosswalk
