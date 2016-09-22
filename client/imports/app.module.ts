@@ -7,6 +7,7 @@ import {ListRedirectorComponent} from "./components/list-redirector.component";
 import {Angular2BlazeTemplateModule} from "angular2-blaze-template";
 import {JoinComponent} from "./components/join.component";
 import {SigninComponent} from "./components/signin.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -27,7 +28,8 @@ import {SigninComponent} from "./components/signin.component";
     imports: [
         BrowserModule,
         routing,
-        Angular2BlazeTemplateModule
+        Angular2BlazeTemplateModule,
+        FormsModule
     ],
     // Main Component
     bootstrap: [MainComponent]
