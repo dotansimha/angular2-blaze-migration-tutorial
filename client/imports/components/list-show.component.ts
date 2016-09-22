@@ -9,7 +9,7 @@ import {
   remove,
   insert,
 } from '../../../imports/api/todos/methods';
-import { displayError } from '../../../imports/ui/lib/errors';
+import { displayError } from '../../../imports/errors';
 import {Observable} from "rxjs";
 
 @Component({

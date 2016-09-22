@@ -4,7 +4,7 @@ import {
   updateText,
   remove,
 } from '../../../imports/api/todos/methods';
-import {displayError} from '../../../imports/ui/lib/errors';
+import {displayError} from '../../../imports/errors';
 
 declare let _;
 
