@@ -14,7 +14,7 @@ export const insert = new ValidatedMethod({
   name: 'lists.insert',
   validate: new SimpleSchema({}).validator(),
   run() {
-    return Lists.insert({});
+    return Lists.collection.insert({});
   },
 });
 
@@ -27,14 +27,14 @@ export const makePrivate = new ValidatedMethod({
         'Must be logged in to make private lists.');
     }
 
-    const list = Lists.findOne(listId);
+    const list = Lists.collection.findOne(listId);
 
     if (list.isLastPublicList()) {
       throw new Meteor.Error('lists.makePrivate.lastPublicList',
         'Cannot make the last public list private.');
     }
 
-    Lists.update(listId, {
+    Lists.collection.update(listId, {
       $set: { userId: this.userId },
     });
   },
@@ -49,7 +49,7 @@ export const makePublic = new ValidatedMethod({
         'Must be logged in.');
     }
 
-    const list = Lists.findOne(listId);
+    const list = Lists.collection.findOne(listId);
 
     if (!list.editableBy(this.userId)) {
       throw new Meteor.Error('lists.makePublic.accessDenied',
@@ -58,7 +58,7 @@ export const makePublic = new ValidatedMethod({
 
     // XXX the security check above is not atomic, so in theory a race condition could
     // result in exposing private data
-    Lists.update(listId, {
+    Lists.collection.update(listId, {
       $unset: { userId: true },
     });
   },
@@ -71,7 +71,7 @@ export const updateName = new ValidatedMethod({
     newName: { type: String },
   }).validator(),
   run({ listId, newName }) {
-    const list = Lists.findOne(listId);
+    const list = Lists.collection.findOne(listId);
 
     if (!list.editableBy(this.userId)) {
       throw new Meteor.Error('lists.updateName.accessDenied',
@@ -81,7 +81,7 @@ export const updateName = new ValidatedMethod({
     // XXX the security check above is not atomic, so in theory a race condition could
     // result in exposing private data
 
-    Lists.update(listId, {
+    Lists.collection.update(listId, {
       $set: { name: newName },
     });
   },
@@ -91,7 +91,7 @@ export const remove = new ValidatedMethod({
   name: 'lists.remove',
   validate: LIST_ID_ONLY,
   run({ listId }) {
-    const list = Lists.findOne(listId);
+    const list = Lists.collection.findOne(listId);
 
     if (!list.editableBy(this.userId)) {
       throw new Meteor.Error('lists.remove.accessDenied',
@@ -106,7 +106,7 @@ export const remove = new ValidatedMethod({
         'Cannot delete the last public list.');
     }
 
-    Lists.remove(listId);
+    Lists.collection.remove(listId);
   },
 });
 
