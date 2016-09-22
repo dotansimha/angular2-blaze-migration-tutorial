@@ -8,6 +8,7 @@ import {Angular2BlazeTemplateModule} from "angular2-blaze-template";
 import {JoinComponent} from "./components/join.component";
 import {SigninComponent} from "./components/signin.component";
 import {FormsModule} from "@angular/forms";
+import {ListItemComponent} from "./components/list-item.component";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
         ListShowComponent,
         ListRedirectorComponent,
         JoinComponent,
-        SigninComponent
+        SigninComponent,
+        ListItemComponent
     ],
     // Entry Components
     entryComponents: [
