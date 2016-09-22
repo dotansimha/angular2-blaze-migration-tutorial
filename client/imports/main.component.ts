@@ -4,6 +4,8 @@ import {Meteor} from "meteor/meteor";
 import {MeteorObservable} from "meteor-rxjs";
 import {Observable} from "rxjs";
 import {Lists} from "../../imports/api/lists/lists";
+import {insert} from "../../imports/api/lists/methods";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app',
@@ -15,7 +17,7 @@ export class MainComponent implements OnInit {
   private userMenuOpen : boolean = false;
   private lists: Observable<any>;
 
-  constructor() {
+  constructor(private router: Router) {
     this.isCordova = Meteor.isCordova;
   }
 
@@ -46,5 +48,16 @@ export class MainComponent implements OnInit {
     else {
       return "";
     }
+  }
+
+  addNewList() {
+    const listId = insert.call((err) => {
+      if (err) {
+        this.router.navigate(['/']);
+        alert('Could not create list.');
+      }
+    });
+
+    this.router.navigate(['/lists', listId]);
   }
 }
