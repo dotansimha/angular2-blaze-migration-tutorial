@@ -1,4 +1,3 @@
-import '/imports/startup/client';
 import {Component, OnInit} from "@angular/core";
 import {Meteor} from "meteor/meteor";
 import {MeteorObservable} from "meteor-rxjs";
