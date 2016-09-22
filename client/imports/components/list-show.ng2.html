@@ -50,7 +50,7 @@
 
     <div class="content-scrollable list-items">
         <div *ngIf="todosReady">
-            <div *ngFor="let todo of todos">
+            <div *ngFor="let todo of todos | async">
                 <blaze-template name="Todos_item" [context]="getContextForItem(todo)"></blaze-template>
             </div>
             <div class="wrapper-message" *ngIf="!todos || todos.length == 0">
