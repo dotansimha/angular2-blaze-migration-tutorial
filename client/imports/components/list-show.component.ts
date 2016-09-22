@@ -22,6 +22,7 @@ export class ListShowComponent implements OnInit {
     private editing : boolean = false;
     private editModel : any;
     private newItemModel : string = '';
+    private editingTodo : number | boolean;
 
     constructor(private currentRoute: ActivatedRoute, private router: Router) {
         this.editModel = {
@@ -100,13 +101,12 @@ export class ListShowComponent implements OnInit {
         }
     }
 
-    getContextForItem(todo) {
-        return {
-            todo: todo,
-            editing: false,
-            onEditingChange(editing) {
-
-            },
+    onTodoItemEditChange(event) {
+        if (event.editing) {
+            this.editingTodo = event.todoId;
+        }
+        else {
+            this.editingTodo = false;
         }
     }
 }
