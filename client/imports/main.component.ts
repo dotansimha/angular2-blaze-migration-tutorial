@@ -1,7 +1,9 @@
 import '/imports/startup/client';
 import {Component, OnInit} from "@angular/core";
-import {MeteorObservable} from "meteor-rxjs";
 import {Meteor} from "meteor/meteor";
+import {MeteorObservable} from "meteor-rxjs";
+import {Observable} from "rxjs";
+import {Lists} from "../../imports/api/lists/lists";
 
 @Component({
   selector: 'app',
@@ -11,6 +13,7 @@ export class MainComponent implements OnInit {
   private isCordova : boolean;
   private menuOpen : boolean = false;
   private userMenuOpen : boolean = false;
+  private lists: Observable<any>;
 
   constructor() {
     this.isCordova = Meteor.isCordova;
@@ -19,6 +22,15 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     MeteorObservable.subscribe("lists.public").subscribe();
     MeteorObservable.subscribe("lists.private").subscribe();
+
+    MeteorObservable.autorun().zone().subscribe(() => {
+      this.lists = Lists.find({
+        $or: [
+          {userId: {$exists: false}},
+          {userId: Meteor.userId()},
+        ]
+      }).zone();
+    });
   }
 
   isConnected() {
