@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {MainComponent} from "./main.component";
+import {routing} from "./app.routes";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -15,7 +16,8 @@ import {MainComponent} from "./main.component";
     providers: [],
     // Modules
     imports: [
-        BrowserModule
+        BrowserModule,
+        routing
     ],
     // Main Component
     bootstrap: [MainComponent]
