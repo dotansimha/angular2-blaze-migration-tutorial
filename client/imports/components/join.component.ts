@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-  template: 'Join!'
+  templateUrl: '/client/imports/components/join.html'
 })
 export class JoinComponent {
 }
