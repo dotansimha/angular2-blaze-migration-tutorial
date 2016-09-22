@@ -1,0 +1,47 @@
+<div id="container" [ngClass]="{'menu-open': menuOpen, 'cordova': isCordova}">
+    <section id="menu">
+        <div *ngIf="currentUser" class="btns-group-vertical">
+            <a href="#" class="js-user-menu btn-secondary">
+                <span *ngIf="userMenuOpen" class="icon-arrow-up"></span>
+                <span *ngIf="!userMenuOpen" class="icon-arrow-down"></span>
+
+                {{ userEmail }}
+            </a>
+            <a *ngIf="userMenuOpen" class="js-logout btn-secondary">Logout</a>
+        </div>
+        <div *ngIf="!currentUser" class="btns-group">
+            <a href="SIGNIN_LINK" class="btn-secondary">Sign In</a>
+            <a href="JOIN_LINK" class="btn-secondary">Join</a>
+        </div>
+
+        <div class="list-todos">
+            <a class="js-new-list link-list-new">
+                <span class="icon-plus"></span>
+                New List
+            </a>
+
+            <a *ngFor="let list of lists | async" href="LIST_LINK" [title]="list.name" class="list-todo">
+                <span *ngIf="list.userId" class="icon-lock"></span>
+                <span *ngIf="list.incompleteCount" class="count-list">{{list.incompleteCount}}</span>
+
+                {{list.name}}
+            </a>
+        </div>
+    </section>
+
+    <div *ngIf="!isConnected()" class="notifications">
+        <div class="notification">
+            <span class="icon-sync"></span>
+            <div class="meta">
+                <div class="title-notification">Trying to connect</div>
+                <div class="description">There seems to be a connection issue</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-overlay"></div>
+
+    <div id="content-container">
+        <router-outlet></router-outlet>
+    </div>
+</div>
