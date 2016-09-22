@@ -1,7 +1,6 @@
-import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Factory } from 'meteor/factory';
 import { Todos } from '../todos/todos.js';
+import {MongoObservable} from "meteor-rxjs";
 
 class ListsCollection extends Mongo.Collection {
   insert(list, callback) {
@@ -25,35 +24,33 @@ class ListsCollection extends Mongo.Collection {
   }
 }
 
-export const Lists = new ListsCollection('Lists');
+export const Lists = new MongoObservable.fromExisting(new ListsCollection("Lists"));
 
 // Deny all client-side updates since we will be using methods to manage this collection
-Lists.deny({
+Lists.collection.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; },
 });
 
-Lists.schema = new SimpleSchema({
+let schema = new SimpleSchema({
   name: { type: String },
   incompleteCount: { type: Number, defaultValue: 0 },
   userId: { type: String, regEx: SimpleSchema.RegEx.Id, optional: true },
 });
 
-Lists.attachSchema(Lists.schema);
+Lists.collection.attachSchema(schema);
 
 // This represents the keys from Lists objects that should be published
 // to the client. If we add secret properties to List objects, don't list
 // them here to keep them private to the server.
-Lists.publicFields = {
+Lists.collection.publicFields = {
   name: 1,
   incompleteCount: 1,
   userId: 1,
 };
 
-Factory.define('list', Lists, {});
-
-Lists.helpers({
+Lists.collection.helpers({
   // A list is considered to be private if it has a userId set
   isPrivate() {
     return !!this.userId;
@@ -73,3 +70,4 @@ Lists.helpers({
     return Todos.find({ listId: this._id }, { sort: { createdAt: -1 } });
   },
 });
+
