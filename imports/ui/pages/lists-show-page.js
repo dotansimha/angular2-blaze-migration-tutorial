@@ -11,7 +11,7 @@ import './app-not-found.js';
 import '../components/lists-show.js';
 
 Template.Lists_show_page.onCreated(function listsShowPageOnCreated() {
-  this.getListId = () => FlowRouter.getParam('_id');
+  this.getListId = () => this.data._id;
 
   this.autorun(() => {
     this.subscribe('todos.inList', this.getListId());
