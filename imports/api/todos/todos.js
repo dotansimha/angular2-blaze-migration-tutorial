@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Factory } from 'meteor/factory';
 import faker from 'faker';
+import {MongoObservable} from "meteor-rxjs";
 
 import incompleteCountDenormalizer from './incompleteCountDenormalizer.js';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
@@ -27,16 +28,16 @@ class TodosCollection extends Mongo.Collection {
   }
 }
 
-export const Todos = new TodosCollection('Todos');
+export const Todos = new MongoObservable.fromExisting(new TodosCollection('Todos'));
 
 // Deny all client-side updates since we will be using methods to manage this collection
-Todos.deny({
+Todos.collection.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; },
 });
 
-Todos.schema = new SimpleSchema({
+let schema = new SimpleSchema({
   listId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
@@ -56,12 +57,12 @@ Todos.schema = new SimpleSchema({
   },
 });
 
-Todos.attachSchema(Todos.schema);
+Todos.collection.attachSchema(schema);
 
 // This represents the keys from Lists objects that should be published
 // to the client. If we add secret properties to List objects, don't list
 // them here to keep them private to the server.
-Todos.publicFields = {
+Todos.collection.publicFields = {
   listId: 1,
   text: 1,
   createdAt: 1,
@@ -77,7 +78,7 @@ Factory.define('todo', Todos, {
   createdAt: () => new Date(),
 });
 
-Todos.helpers({
+Todos.collection.helpers({
   list() {
     return Lists.findOne(this.listId);
   },
