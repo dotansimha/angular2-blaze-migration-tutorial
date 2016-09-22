@@ -1,9 +1,9 @@
 <div class="page lists-show">
     <nav class="js-title-nav" *ngIf="list">
-        <form *ngIf="editing" class="js-edit-form list-edit-form">
-            <input type="text" name="name" [value]="editModel.name">
+        <form *ngIf="editing" class="js-edit-form list-edit-form" (ngSubmit)="saveList()" #editForm="ngForm">
+            <input type="text" [(ngModel)]="editModel.name" (blur)="saveList()" name="editNameInput">
             <div class="nav-group right">
-                <a href="#" class="js-cancel nav-item">
+                <a href="#" class="js-cancel nav-item" (click)="editList(false)">
                     <span class="icon-close js-cancel" title="Cancel"></span>
                 </a>
             </div>
@@ -15,7 +15,7 @@
                 </a>
             </div>
 
-            <h1 class="js-edit-list title-page">
+            <h1 class="js-edit-list title-page" (click)="editList(true)">
                 <span class="title-wrapper">{{list.name}}</span>
                 <span class="count-list">{{list.incompleteCount}}</span>
             </h1>
@@ -31,19 +31,19 @@
                     <span class="icon-cog"></span>
                 </div>
                 <div class="options-web">
-                    <a class="js-toggle-list-privacy nav-item">
+                    <a class="js-toggle-list-privacy nav-item" (click)="toggleListPrivacy()">
                         <span *ngIf="list.userId" class="icon-lock" title="Make list public"></span>
                         <span *ngIf="!list.userId" class="icon-unlock" title="Make list private"></span>
                     </a>
-                    <a class="js-delete-list nav-item">
+                    <a class="js-delete-list nav-item" (click)="deleteList()">
                         <span class="icon-trash" title="Delete list"></span>
                     </a>
                 </div>
             </div>
         </div>
 
-        <form class="js-todo-new todo-new input-symbol">
-            <input type="text" placeholder="Type to add new tasks">
+        <form class="js-todo-new todo-new input-symbol" (ngSubmit)="addNew()" #newForm="ngForm">
+            <input type="text" placeholder="Type to add new tasks" [(ngModel)]="newItemModel" name="newItemInput">
             <span class="icon-add js-todo-add"></span>
         </form>
     </nav>
