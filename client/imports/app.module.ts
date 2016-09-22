@@ -4,6 +4,7 @@ import {MainComponent} from "./main.component";
 import {routing} from "./app.routes";
 import {ListShowComponent} from "./components/list-show.component";
 import {ListRedirectorComponent} from "./components/list-redirector.component";
+import {Angular2BlazeTemplateModule} from "angular2-blaze-template";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -21,7 +22,8 @@ import {ListRedirectorComponent} from "./components/list-redirector.component";
     // Modules
     imports: [
         BrowserModule,
-        routing
+        routing,
+        Angular2BlazeTemplateModule
     ],
     // Main Component
     bootstrap: [MainComponent]
