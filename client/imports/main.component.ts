@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
   }
 
   isConnected() {
-    return true;
+    return Meteor.status().connected;
   }
 
   get userEmail() {
