@@ -1,7 +1,7 @@
 <div id="container" [ngClass]="{'menu-open': menuOpen, 'cordova': isCordova}">
     <section id="menu">
         <div *ngIf="currentUser" class="btns-group-vertical">
-            <a href="#" class="js-user-menu btn-secondary">
+            <a class="js-user-menu btn-secondary" (click)="userMenuOpen = !userMenuOpen">
                 <span *ngIf="userMenuOpen" class="icon-arrow-up"></span>
                 <span *ngIf="!userMenuOpen" class="icon-arrow-down"></span>
 
