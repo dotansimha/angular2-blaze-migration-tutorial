@@ -51,7 +51,7 @@
     <div class="content-scrollable list-items">
         <div *ngIf="todosReady">
             <div *ngFor="let todo of todos | async">
-                <blaze-template name="Todos_item" [context]="getContextForItem(todo)"></blaze-template>
+                <list-item [todo]="todo" [editing]="editingTodo" (editChange)="onTodoItemEditChange($event)"></list-item>
             </div>
             <div class="wrapper-message" *ngIf="!todos || todos.length == 0">
                 <div class="title-message">No tasks here</div>
