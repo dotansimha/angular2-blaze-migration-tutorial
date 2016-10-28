@@ -1,5 +1,6 @@
 import {Component, NgZone} from "@angular/core";
 import {Router} from "@angular/router";
+import template from "./join.html";
 
 class JoinModel {
   constructor(public email : string, public password : string, public passwordVerify : string) {
@@ -8,7 +9,7 @@ class JoinModel {
 }
 
 @Component({
-  templateUrl: '/client/imports/components/join.html'
+  template
 })
 export class JoinComponent {
   private model : JoinModel;

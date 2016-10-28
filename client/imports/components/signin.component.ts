@@ -1,5 +1,6 @@
 import {Component, NgZone} from "@angular/core";
 import {Router} from "@angular/router";
+import template from "./signin.html";
 
 class SigninModel {
   constructor(public email : string, public password : string) {
@@ -8,7 +9,7 @@ class SigninModel {
 }
 
 @Component({
-  templateUrl: '/client/imports/components/signin.html'
+  template
 })
 export class SigninComponent {
   private model : SigninModel;

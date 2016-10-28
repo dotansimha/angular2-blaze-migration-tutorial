@@ -5,10 +5,11 @@ import {Observable} from "rxjs";
 import {Lists} from "../../imports/api/lists/lists";
 import {insert} from "../../imports/api/lists/methods";
 import {Router} from "@angular/router";
+import template from "./main-component.html";
 
 @Component({
   selector: 'app',
-  templateUrl: '/client/imports/main-component.html'
+  template
 })
 export class MainComponent implements OnInit {
   private isCordova : boolean;

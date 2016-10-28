@@ -5,12 +5,13 @@ import {
   remove,
 } from '../../../imports/api/todos/methods';
 import {displayError} from '../../../imports/errors';
+import template from "./list-item.html";
 
 declare let _;
 
 @Component({
   selector: 'list-item',
-  templateUrl: '/client/imports/components/list-item.html'
+  template
 })
 export class ListItemComponent {
   @Input("todo") todo: any;
