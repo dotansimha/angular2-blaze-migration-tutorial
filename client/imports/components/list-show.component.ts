@@ -11,9 +11,10 @@ import {
 } from '../../../imports/api/todos/methods';
 import { displayError } from '../../../imports/errors';
 import {Observable} from "rxjs";
+import template from "./list-show.html";
 
 @Component({
-    templateUrl: '/client/imports/components/list-show.html'
+    template
 })
 export class ListShowComponent implements OnInit {
     private list : any;
