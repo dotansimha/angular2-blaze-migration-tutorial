@@ -1,6 +1,6 @@
 So now that we are done with the migration, we need to perform some clean-ups and make sure that we remove all the old files.
 
-Let's join all the stylesheets we need under the same directory - `imports/styelsheets/`, now they are in `imports/ui/stylesheets/` (commit #10.1).
+Let's join all the stylesheets we need under the same directory - `imports/stylesheets/`, now they are in `imports/ui/stylesheets/` (commit #10.1).
 
 > Make sure to also take `imports/ui/components/lists-show.less` !
 
